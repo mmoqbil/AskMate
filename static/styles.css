@@ -101,3 +101,48 @@ aside {
     font-size: 15px;
     color: var(--dark-gray)
 }
+
+table {
+    border: 0px #b3adad;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+table th {
+    border: 0px #b3adad;
+    padding: 5px;
+    color: blue;
+}
+
+table td {
+    border: 0px #b3adad;
+    text-align: center;
+    padding: 5px;
+    color: #313030;
+}
+
+.question {
+    font-size: 1.15rem;
+    text-align: left;
+}
+
+.answer {
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.table-footer {
+    font-size: 0.75rem;
+}
+
+tr.table-footer td:nth-child(2) {
+    text-align: left;
+}
+
+tr.table-footer td:nth-child(4) {
+    text-align: right;
+}
+
+tr.table-footer td:nth-child(5) {
+    text-align: right;
+}

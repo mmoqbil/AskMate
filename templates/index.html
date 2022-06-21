@@ -58,27 +58,33 @@
 
             </ul>
         </div>
-
-
-        id,submission_time,view_number,vote_number,title,message,image
-
         <main class="all-questions item">
             <div class="questions">
                 <h1>All Questions</h1><br>
                 <table>
-                    <thead>
-                        <tr>
-                            <td><small><a href="{{ url_for('votes') }}">votes</a></small><br></td>
-                            <th>Title</th>
-                        </tr>
-                        <tr>
-                            <td><small><a href="{{ url_for('answers') }}">answers</a></small><br></td>
-                            <td>Question</td>
-                        </tr>
-                        <tr>
-                            <td><small><a href="{{ url_for('views') }}">views</a></small></td>
-                        </tr>
-                    </thead>
+                    <tr>
+                        <td></td>
+                        <th class="question" colspan='4'>I would like to know how dictionates in Python work?</th>
+
+                    </tr>
+                    <tr>
+                        <td rowspan='3' colspan='1'><small><a href="{{ url_for('votes') }}">votes</a></small><br><small><a href="{{ url_for('answers') }}">answers</a></small><br><small><a href="{{ url_for('views') }}">views</a></small></td>
+                        <td class="answer" rowspan='1' colspan='4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan='2' colspan='2'></td>
+                        <td rowspan='2' colspan='2'></td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr class="table-footer">
+                        <td></td>
+                        <td class="table-footer-image">View Image</td>
+                        <td></td>
+                        <td class="table-footer-question">Question ID: 222</td>
+                        <td class="table-footer-timestamp">Asked at: TIMESTAMP</td>
+                    </tr>
                 </table>
             </div>
         </main>
