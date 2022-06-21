@@ -1,0 +1,20 @@
+<table border="1">
+	<thead>
+		<tr>
+			{% for header in TABLE_HEADERS %}
+			<th>{{header}}</th>
+			{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>{{all_stats[0]["id"]}}</td>
+			<td>{{all_stats[0]["submission_time"]}}</td>
+			<td>{{all_stats[0]["view_number"]}}</td>
+			<td>{{all_stats[0]["vote_number"]}}</td>
+			<td>{{all_stats[0]["title"]}}</td>
+			<td>{{all_stats[0]["message"]}}</td>
+			<td>{{all_stats[0]["image"]}}</td>
+		</tr>
+	</tbody>
+</table>

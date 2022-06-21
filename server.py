@@ -11,7 +11,11 @@ question_keys = ['id', 'submission_time', 'view_number', 'vote_number', 'title',
 def hello():
     return "Hello World!"
 
-
+@app.route("/list")
+def question_list():
+    TABLE_HEADERS = ["ID", "DATE", "View", "Vote", "Title", "Message", "Image"]
+    all_stats = connection.reader_csv(question_path)
+    return render_template("question_list.html", all_stats=all_stats, TABLE_HEADERS=TABLE_HEADERS)
 
 @app.route("/add-question", methods=["GET", "POST"])
 def add_question():
