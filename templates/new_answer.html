@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD QUESTION</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+<h2>Question: {{ question_title }}</h2>
+<br>
+<h1> {{ question_message }}</h1>
+<br>
+<form {{ url_for("new_answer", question_id=question_id) }} method="post">
+    <textarea name="message" cols="40" rows="5" placeholder="Type here" required></textarea><br>
+    <input type="submit">
+</form>
+<br>
+<h2>{% if title_message is not none %}
+{{ title_message }}
+{% else %}
+There is no answer.
+{% endif %}</h2>
+</body>
+</html>
