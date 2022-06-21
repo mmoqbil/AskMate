@@ -46,6 +46,16 @@ def delete_answer(answer_id):
     question_id = request.args.get("question_id")
     connection.delete_answer(answer_id)
     return redirect(url_for("display_question", question_id=question_id))
+@app.route("/question/<int:question_id>/new_answer", methods = ["POST", "GET"])
+def new_answer(question_id):
+    question = connection.reader_csv(question_path)
+    question_title = question[question_id - 1]["title"]
+    question_message = question[question_id - 1]["message"]
+    title_message = request.form.get("message")
+    answer_id = util.generate_new_id("last_answer_id.txt")
+    new_answer_dict = {"id":answer_id, "submission_time":0, "vote_number":0, "question_id":question_id, "message":title_message, "image":""}
+    connection.write_data(new_answer_dict, answer_path)
+    return render_template("new_answer.html", question_title=question_title, question_message=question_message,title_message=title_message, question_id=question_id)
 
 
 
