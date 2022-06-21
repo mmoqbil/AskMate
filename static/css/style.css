@@ -1,0 +1,27 @@
+h2{
+ text-align:center;
+}
+form{
+ text-align:center;
+}
+/* Input */
+form input[type=text]{
+ margin-top:19px;
+ width:214px;
+ transform:translatex(-4px) translatey(-31px);
+}
+/* Text Area */
+form textarea{
+ min-height:98px;
+ width:459px;
+}
+/* Upload button */
+#upload_button{
+ padding-top:8px;
+}
+/* Body */
+body{
+ text-align:center;
+ background-color:rgba(63,105,115,0.83);
+ background-image:linear-gradient(to right, #56ccf2 0%, #2f80ed 100%);
+}
