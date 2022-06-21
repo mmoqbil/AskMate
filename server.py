@@ -45,6 +45,22 @@ def add_question():
         connection.writer_csv(question_path, question_keys, util.create_fields(title, question, image_path))
     return render_template('add-question.html')
 
+@app.route("/question/<int:question_id>")
+def display_question(question_id):
+    question = connection.reader_csv(question_path)
+    question_title = question[question_id-1]["title"]
+    question_message = question[question_id-1]["message"]
+    return render_template("display_question.html", question_title = question_title, question_message = question_message)
+@app.route("/question/<question_id>/delete", methods=["POST", "GET"])
+def delete_question(question_id):
+    connection.delete_question(question_id)
+    return redirect("/list")
+@app.route('/answer/<answer_id>/delete')
+def delete_answer(answer_id):
+    question_id = request.args.get("question_id")
+    connection.delete_answer(answer_id)
+    return redirect(url_for("display_question", question_id=question_id))
+
 
 
 if __name__ == "__main__":
