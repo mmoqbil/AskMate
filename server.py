@@ -27,7 +27,12 @@ def add_question():
         connection.writer_csv(question_path, question_keys, util.create_fields(title, question, image_path))
     return render_template('add-question.html')
 
-
+@app.route("/question/<int:question_id>")
+def display_question(question_id):
+    question = connection.reader_csv(question_path)
+    question_title = question[question_id-1]["title"]
+    question_message = question[question_id-1]["message"]
+    return render_template("display_question.html", question_title = question_title, question_message = question_message)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',
