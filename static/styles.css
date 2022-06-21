@@ -12,7 +12,7 @@
 
 * {
     margin: 0 auto;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     color: var(--black)
 }
 
@@ -22,7 +22,6 @@ body {
 
 .navbar {
     padding: 10px 0 5px 0;
-    font-family: 'Nunito Sans', sans-serif;
     font-weight: 100;
     background-color: var(--gray);
     border: 1px solid var(--dark-gray);
@@ -34,13 +33,15 @@ body {
     justify-content: center;
 }
 
-.navbar ul li {
+.navbar ul li,
+.sidebar li {
     list-style-type: none;
     padding: 5px 20px;
     margin: 0 40px;
 }
 
-.navbar ul li a {
+.navbar ul li a,
+.sidebar li a {
     text-decoration: none;
 }
 
@@ -111,7 +112,10 @@ table {
 table th {
     border: 0px #b3adad;
     padding: 5px;
-    color: blue;
+    color: #0d75c4;
+    font-weight: 400;
+    word-spacing: 2px;
+    letter-spacing: 2px;
 }
 
 table td {
@@ -128,7 +132,7 @@ table td {
 
 .answer {
     font-size: 0.85rem;
-    text-align: left;
+    text-align: justify;
 }
 
 .table-footer {
@@ -145,4 +149,46 @@ tr.table-footer td:nth-child(4) {
 
 tr.table-footer td:nth-child(5) {
     text-align: right;
+}
+
+.statistics {
+    text-align: right;
+}
+
+.statistics a {
+    text-decoration: none;
+}
+
+.first-row,
+.second-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.first-row h1,
+.second-row p {
+    align-self: left;
+    margin: 0;
+}
+
+button {
+    margin-left: -6px;
+}
+
+.first-row button,
+.buttons {
+    align-self: right;
+    margin-right: 25px;
+}
+
+.active {
+    background-color: var(--dark-gray);
+    padding-right: 15px;
+}
+
+.sidebar li {
+    padding: 2px 45px;
+    line-height: 30px;
 }

@@ -39,7 +39,7 @@
     <div class="container">
         <div class="sidebar item">
             <ul>
-                <li><a href="#">Questions</a></li>
+                <li><a href="#" class="active">Questions</a></li>
                 <li>
                     <a href="#">Tags</a>
                 </li>
@@ -59,47 +59,65 @@
             </ul>
         </div>
         <main class="all-questions item">
-            <div class="questions">
-                <h1>All Questions</h1><br>
-                <table>
-                    <tr>
-                        <td></td>
-                        <th class="question" colspan='4'>I would like to know how dictionates in Python work?</th>
+            <p class="questions"></p>
+            <div class="first-row">
+                <h1>All Questions</h1>
+                <button>Add Question</button>
+            </div>
 
-                    </tr>
-                    <tr>
-                        <td rowspan='3' colspan='1'><small><a href="{{ url_for('votes') }}">votes</a></small><br><small><a href="{{ url_for('answers') }}">answers</a></small><br><small><a href="{{ url_for('views') }}">views</a></small></td>
-                        <td class="answer" rowspan='1' colspan='4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                    </tr>
-                    <tr>
-                        <td rowspan='2' colspan='2'></td>
-                        <td rowspan='2' colspan='2'></td>
-                    </tr>
-                    <tr>
-                    </tr>
-                    <tr class="table-footer">
-                        <td></td>
-                        <td class="table-footer-image">View Image</td>
-                        <td></td>
-                        <td class="table-footer-question">Question ID: 222</td>
-                        <td class="table-footer-timestamp">Asked at: TIMESTAMP</td>
-                    </tr>
-                </table>
+            <br>
+            <div class="second-row">
+                <p>15 questions</p>
+                <div class="buttons">
+                    <button>Newest</button>
+                    <button>Title</button>
+                    <button>Votes</button>
+                    <button>Ascending</button>
+                    <button>Descending</button>
+                </div>
             </div>
-        </main>
-        <aside class="item">
-            <div class="blog">
-                <h2>AskMate Blog</h2>
-                <p>Blog Post</p>
-                <p>Blog Post</p>
-            </div>
-            <div class="blog">
-                <h2>AskMate Blog</h2>
-                <p>Blog Post</p>
-                <p>Blog Post</p>
-            </div>
-        </aside>
+
+
+            <br><br>
+            <table>
+                <tr>
+                    <td></td>
+                    <th class="question" colspan='4'>I would like to know how dictionates in Python work?</th>
+
+                </tr>
+                <tr>
+                    <td class="statistics" rowspan='3' colspan='1'><small><a href="{{ url_for('votes') }}">votes</a></small><br><small><a href="{{ url_for('answers') }}">answers</a></small><br><small><a href="{{ url_for('views') }}">views</a></small></td>
+                    <td class="answer" rowspan='1' colspan='4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+                </tr>
+                <tr>
+                    <td rowspan='2' colspan='2'></td>
+                    <td rowspan='2' colspan='2'></td>
+                </tr>
+                <tr>
+                </tr>
+                <tr class="table-footer">
+                    <td></td>
+                    <td class="table-footer-image">View Image</td>
+                    <td></td>
+                    <td class="table-footer-question">Question ID: 222</td>
+                    <td class="table-footer-timestamp">Asked at: TIMESTAMP</td>
+                </tr>
+            </table>
+    </div>
+    </main>
+    <aside class="item">
+        <div class="blog">
+            <h2>AskMate Blog</h2>
+            <p>Blog Post</p>
+            <p>Blog Post</p>
+        </div>
+        <div class="blog">
+            <h2>AskMate Blog</h2>
+            <p>Blog Post</p>
+            <p>Blog Post</p>
+        </div>
+    </aside>
     </div>
 </body>
 
