@@ -28,3 +28,24 @@ def write_data(dictionary, filename,):
         for row in data:
             writer.writerow(row)
         writer.writerow(dictionary)
+
+def delete_question(question_id):
+    data = reader_csv(question_path)
+    with open(question_path, "w") as file:
+        writer = csv.DictWriter(file, question_keys)
+        writer.writeheader()
+        for row in data:
+            if row["id"] != question_id:
+                writer.writerow(row)
+    return data
+
+def delete_answer(answer_id):
+    data = reader_csv(answer_path)
+    with open(answer_path, "w") as file:
+        writer = csv.DictWriter(file, answer_keys)
+        writer.writeheader()
+
+        for row in data:
+            if row["id"] != answer_id:
+                writer.writerow(row)
+        return data
