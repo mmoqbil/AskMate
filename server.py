@@ -23,9 +23,19 @@ def add_question():
             filename = secure_filename(request.files['image'].filename)
             request.files['image'].save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
             image_path = 'static/images/%s' % filename
-
         connection.writer_csv(question_path, question_keys, util.create_fields(title, question, image_path))
+        return redirect("/list")
     return render_template('add-question.html')
+
+@app.route("/question/<question_id>/delete", methods=["POST", "GET"])
+def delete_question(question_id):
+    connection.delete_question(question_id)
+    return redirect("/list")
+@app.route('/answer/<answer_id>/delete')
+def delete_answer(answer_id):
+    question_id = request.args.get("question_id")
+    connection.delete_answer(answer_id)
+    return redirect(url_for("display_question", question_id=question_id))
 
 
 
