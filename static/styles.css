@@ -1,0 +1,103 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,400;0,700;1,200&family=Open+Sans:wght@300;500&display=swap');
+:root {
+    --blue: #17C9E5;
+    --violet: #7843E7;
+    --pink: #E914E3;
+    --white: #f8f9f9;
+    --gray: #f8f9f964;
+    --dark-gray: #9a999951;
+    --black: #333;
+}
+
+* {
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--black)
+}
+
+body {
+    background: var(--white);
+}
+
+.navbar {
+    padding: 10px 0 5px 0;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 100;
+    background-color: var(--gray);
+    border: 1px solid var(--dark-gray);
+}
+
+.navbar ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.navbar ul li {
+    list-style-type: none;
+    padding: 5px 20px;
+    margin: 0 40px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.item {
+    margin: 0;
+    padding: 20px;
+    height: 100vh;
+}
+
+input {
+    border-radius: 5px;
+    border: 1px solid var(--dark-gray);
+    width: 25vw;
+    height: 25px;
+    margin-right: 20px;
+    color: var(--gray);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+}
+
+.all-questions {
+    width: 40vw;
+    border-right: 1px solid var(--dark-gray);
+}
+
+.all-questions h1 {
+    font-size: 1.3rem;
+}
+
+aside {
+    width: 20vw;
+    border-right: 1px solid var(--dark-gray);
+}
+
+.sidebar {
+    width: 10vw;
+    border-right: 1px solid var(--dark-gray);
+}
+
+.search {
+    position: relative;
+}
+
+.search input {
+    text-indent: 30px;
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    font-size: 15px;
+    color: var(--dark-gray)
+}

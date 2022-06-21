@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="{{ url_for('/') }}">
+                    <img src="../static/logo.png" width="100px">
+                </a>
+            </li>
+            <li>
+                <a href="#about">About</a>
+            </li>
+            <li>
+                <a href="#products">Products</a>
+            </li>
+            <li>
+                <a href="contact">Contact</a>
+            </li>
+            <li>
+                <div class="search">
+                    <span class="fa fa-search"></span>
+                    <input type="text" placeholder="Search...">
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="sidebar item">
+            <ul>
+                <li><a href="#">Questions</a></li>
+                <li>
+                    <a href="#">Tags</a>
+                </li>
+                <li>
+                    <a href="#">Users</a>
+                </li>
+                <li>
+                    <a href="#">Aaa</a>
+                </li>
+                <li>
+                    <a href="#">Baaa</a>
+                </li>
+                <li>
+                    <a href="#">Caaa</a>
+                </li>
+
+            </ul>
+        </div>
+        <main class="all-questions item">
+            <div class="questions">
+                <h1>All Questions</h1><br>
+                <table>
+                    <thead>
+                        <tr>
+                            <td><small><a href="{{ url_for('votes') }}">votes</a></small><br></td>
+                            <th>Title</th>
+                        </tr>
+                        <tr>
+                            <td><small><a href="{{ url_for('answers') }}">answers</a></small><br></td>
+                            <td>Question</td>
+                        </tr>
+                        <tr>
+                            <td><small><a href="{{ url_for('views') }}">views</a></small></td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </main>
+        <aside class="item">
+            <div class="blog">
+                <h2>AskMate Blog</h2>
+                <p>Blog Post</p>
+                <p>Blog Post</p>
+            </div>
+            <div class="blog">
+                <h2>AskMate Blog</h2>
+                <p>Blog Post</p>
+                <p>Blog Post</p>
+            </div>
+        </aside>
+    </div>
+</body>
+
+</html>
