@@ -14,9 +14,9 @@ def hello():
             <br>
             <a href="http://127.0.0.1:5000/list">Click here to go to the list of questions :)</a>'''
 
-@app.route("/list")
-def list():
-    return "Hello stranger!"
+# @app.route("/list")
+# def list():
+#     return "Hello stranger!"
 
 # @app.route("/question/<question_id>")
 # def display_question(question_id):
@@ -29,7 +29,7 @@ def list():
 # @app.route("/question/<question_id>/edit")
 # def edit_question(question_id):
 #     return render_template('edit_question.html')
-
+@app.route("/list")
 def question_list():
     TABLE_HEADERS = ["ID", "DATE", "View", "Vote", "Title", "Message", "Image"]
     all_stats = connection.reader_csv(question_path)
