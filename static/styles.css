@@ -2,6 +2,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,400;0,700;1,200&family=Open+Sans:wght@300;500&display=swap');
      :root {
         --blue: #17C9E5;
+        --dark-blue: #0d75c4;
         --violet: #7843E7;
         --pink: #E914E3;
         --white: #f8f9f9;
@@ -98,25 +99,21 @@
     }
     
     table {
-        border: 0px #b3adad;
         border-collapse: collapse;
         padding: 5px;
     }
     
     table th {
-        border: 0px #b3adad;
         padding: 5px;
-        color: #0d75c4;
+        color: var(--dark-blue);
         font-weight: 400;
         word-spacing: 2px;
         letter-spacing: 2px;
     }
     
     table td {
-        border: 0px #b3adad;
         text-align: center;
         padding: 5px;
-        color: #313030;
     }
     
     .question {
