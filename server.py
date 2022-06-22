@@ -18,17 +18,17 @@ def hello():
 def list():
     return "Hello stranger!"
 
-@app.route("/question/<question_id>")
-def display_question(question_id):
-    return render_template('index.html')
+# @app.route("/question/<question_id>")
+# def display_question(question_id):
+#     return render_template('index.html')
 
-@app.route("/question/<question_id>/new-answer")
-def post_an_answer(question_id):
-    return render_template('post_an_answer.html')
+# @app.route("/question/<question_id>/new-answer")
+# def post_an_answer(question_id):
+#     return render_template('post_an_answer.html')
 
-@app.route("/question/<question_id>/edit")
-def edit_question(question_id):
-    return render_template('edit_question.html')
+# @app.route("/question/<question_id>/edit")
+# def edit_question(question_id):
+#     return render_template('edit_question.html')
 
 def question_list():
     TABLE_HEADERS = ["ID", "DATE", "View", "Vote", "Title", "Message", "Image"]
