@@ -7,14 +7,16 @@
 		</tr>
 	</thead>
 	<tbody>
+		{% for stat in all_stats %}
 		<tr>
-			<td>{{all_stats[0]["id"]}}</td>
-			<td>{{all_stats[0]["submission_time"]}}</td>
-			<td>{{all_stats[0]["view_number"]}}</td>
-			<td>{{all_stats[0]["vote_number"]}}</td>
-			<td>{{all_stats[0]["title"]}}</td>
-			<td>{{all_stats[0]["message"]}}</td>
-			<td>{{all_stats[0]["image"]}}</td>
+			<td>{{stat["id"]}}</td>
+			<td>{{stat["submission_time"]}}</td>
+			<td>{{stat["view_number"]}}</td>
+			<td>{{stat["vote_number"]}}</td>
+			<td>{{stat["title"]}}</td>
+			<td>{{stat["message"]}}</td>
+			<td>{{stat["image"]}}</td>
 		</tr>
+		{% endfor %}*
 	</tbody>
 </table>
