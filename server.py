@@ -51,10 +51,17 @@ def add_question():
 
 @app.route("/question/<int:question_id>")
 def display_question(question_id):
-    question = connection.reader_csv(question_path)
-    question_title = question[question_id-1]["title"]
-    question_message = question[question_id-1]["message"]
-    return render_template("display_question.html", question_title = question_title, question_message = question_message)
+    questions = connection.reader_csv(question_path)
+    question_title = questions[question_id-1]["title"]
+    question_message = questions[question_id-1]["message"]
+    answers = connection.reader_csv(answer_path)
+    question_answers = []
+
+    for answer in answers:
+        if answer["question_id"] == str(question_id):
+            question_answers.append(answer["message"])
+    return render_template("display_question.html", question_title = question_title, question_message = question_message,
+                           answers=question_answers, question_id=question_id)
 @app.route("/question/<question_id>/delete", methods=["POST", "GET"])
 def delete_question(question_id):
     connection.delete_question(question_id)
@@ -70,9 +77,15 @@ def new_answer(question_id):
     question_title = question[question_id - 1]["title"]
     question_message = question[question_id - 1]["message"]
     title_message = request.form.get("message")
-    answer_id = util.generate_new_id("last_answer_id.txt")
-    new_answer_dict = {"id":answer_id, "submission_time":0, "vote_number":0, "question_id":question_id, "message":title_message, "image":""}
-    connection.write_data(new_answer_dict, answer_path)
+    if request.method == "POST":
+        answer_id = util.generate_new_id("last_answer_id.txt")
+    else:
+        answer_id = 0
+    new_answer_dict = {"id": answer_id, "submission_time": 0, "vote_number": 0, "question_id": question_id,
+                       "message": title_message, "image": ""}
+    if request.method == "POST":
+        connection.write_data(new_answer_dict, answer_path)
+
     return render_template("new_answer.html", question_title=question_title, question_message=question_message,title_message=title_message, question_id=question_id)
 
 

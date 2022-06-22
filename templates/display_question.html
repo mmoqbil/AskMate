@@ -11,6 +11,13 @@
 <br>
 <br>
 <h3>{{ question_message }}</h3>
+<br>
+<br>
+<h2>Answers:</h2>
+<br>
+{% for line in answers %}
+{{ line }}<br><br><br>
+{% endfor %}
 </form>
 </body>
 </html>
