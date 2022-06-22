@@ -182,3 +182,15 @@
     .sidebar li {
         line-height: 30px;
     }
+    
+    footer {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+    
+    footer p {
+        align-self: center;
+    }

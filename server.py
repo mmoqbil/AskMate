@@ -9,10 +9,7 @@ question_keys = ['id', 'submission_time', 'view_number', 'vote_number', 'title',
 
 @app.route("/")
 def hello():
-    return '''
-            <p>Hello world!</p>
-            <br>
-            <a href="http://127.0.0.1:5000/list">Click here to go to the list of questions :)</a>'''
+    return render_template("index.html")
 
 # @app.route("/list")
 # def list():
