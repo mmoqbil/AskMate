@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>ADD QUESTION</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
+{% extends "layout.html" %}
+<title>{% block title %}Add question{% endblock %}</title>
+<main>{% block main %}
 
-<body>
-<h2>Add a question</h2>
-<a href="/">Go back</a><br><br>
-<form action="/add-question" method="POST" enctype="multipart/form-data">
-    <input type="text" name="title" placeholder="Question title" required><br>
-    <textarea name="question" cols="40" rows="5" placeholder="Type here" required></textarea><br>
-    <input id='upload_button' lang='en' type="file" name="image" accept=".jpeg,.jpg,.png,.gif" id="image" value="upload an image"><br>
-    <label for="image">↑ Upload an image ↑</label><br><br>
-    <input type="submit" value="Submit">
-</form>
-</body>
-</html>
+    <h2>Add a question</h2>
+    <a href="/">Go back</a><br><br>
+    <form action="/add-question" method="POST" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Question title" required><br>
+        <textarea name="question" cols="40" rows="5" placeholder="Type here" required></textarea><br>
+        <input id='upload_button' lang='en' type="file" name="image" accept=".jpeg,.jpg,.png,.gif" id="image" value="upload an image"><br>
+        <label for="image">↑ Upload an image ↑</label><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    {% endblock %}
+</main>
