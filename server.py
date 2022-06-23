@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, url_for, redirect
 from werkzeug.utils import secure_filename
 import  os, connection, util
-
+UPLOAD_FOLDER = '/static/images'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app = Flask(__name__)
 question_path = "sample_data/question.csv"
 answer_path = "sample_data/answer.csv"
@@ -37,7 +38,7 @@ def question_list():
     TABLE_HEADERS = ["ID", "DATE", "View", "Vote", "Title", "Message", "Image"]
     all_stats = connection.reader_csv(question_path)
     questions_with_timestamp = util.get_date_format(all_stats)
-    return render_template("index.html", dupa=questions_with_timestamp, TABLE_HEADERS=TABLE_HEADERS)
+    return render_template("index.html", questions_with_timestamp=questions_with_timestamp, TABLE_HEADERS=TABLE_HEADERS)
 
 
 
@@ -72,6 +73,8 @@ def display_question(question_id):
     for answer in answers:
         if answer["question_id"] == str(question_id):
             question_answers.append(answer["message"])
+    if request.method =="POST":
+         return redirect(url_for("new_answer", question_id=question_id))
     return render_template("display_question.html", question_title = question_title, question_message = question_message, answers=question_answers, question_id=question_id)
     
     
