@@ -1,50 +1,26 @@
 from flask import Flask, render_template, request, url_for, redirect
 from werkzeug.utils import secure_filename
 import  os, connection, util
-
+UPLOAD_FOLDER = '/static/images'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app = Flask(__name__)
 question_path = "sample_data/question.csv"
 answer_path = "sample_data/answer.csv"
 question_keys = ['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image']
+TABLE_HEADERS = ["ID", "DATE", "View", "Vote", "Title", "Message", "Image"]
+all_stats = connection.reader_csv(question_path)
+questions_with_timestamp = util.get_date_format(all_stats)
+
+
 
 @app.route("/")
 def hello():
     return render_template("index.html")
 
-# @app.route("/list")
-# def list():
-#     return "Hello stranger!"
-
-# @app.route("/question/<question_id>")
-# def display_question(question_id):
-#     return render_template('index.html')
-
-# @app.route("/question/<question_id>/new-answer")
-# def post_an_answer(question_id):
-#     return render_template('post_an_answer.html')
-
-# @app.route("/question/<question_id>/edit")
-# def edit_question(question_id):
-#     return render_template('edit_question.html')
-
-
-
-
-
 
 @app.route("/list")
 def question_list():
-    TABLE_HEADERS = ["ID", "DATE", "View", "Vote", "Title", "Message", "Image"]
-    all_stats = connection.reader_csv(question_path)
-    questions_with_timestamp = util.get_date_format(all_stats)
     return render_template("index.html", questions_with_timestamp=questions_with_timestamp, TABLE_HEADERS=TABLE_HEADERS)
-
-
-
-
-
-
-
 
 
 @app.route("/add-question", methods=["GET", "POST"])
@@ -61,6 +37,7 @@ def add_question():
         connection.writer_csv(question_path, question_keys, util.create_fields(title, question, image_path))
     return render_template('add-question.html')
 
+
 @app.route("/question/<int:question_id>", methods=["GET", "POST"])
 def display_question(question_id):
     questions = connection.reader_csv(question_path)
@@ -72,6 +49,8 @@ def display_question(question_id):
     for answer in answers:
         if answer["question_id"] == str(question_id):
             question_answers.append(answer["message"])
+    if request.method =="POST":
+         return redirect(url_for("new_answer", question_id=question_id))
     return render_template("display_question.html", question_title = question_title, question_message = question_message, answers=question_answers, question_id=question_id)
     
     
@@ -107,6 +86,39 @@ def new_answer(question_id):
 
     return render_template("new_answer.html", question_title=question_title, question_message=question_message,title_message=title_message, question_id=question_id)
 
+
+@app.route('/question/<question_id>/edit', methods=["GET", "POST"])
+def edit_question(question_id):
+    if request.method == 'POST':
+        edited_question = {
+            "id": question_id,
+            "submission_time": util.get_current_time(),
+            "view_number": 0,
+            "vote_number": 0,
+            "title": request.form.get("title"),
+            "message": request.form.get("message"),
+        }
+        questions = connection.update_question(edited_question, question_id)
+
+        return redirect(url_for("display_question", question_id=question_id))
+    else:
+        data = connection.reader_csv(question_path)
+        return render_template("edit_question.html", question_id=question_id, questions=data)
+
+
+@app.route("/list/sorted")
+def sorted_list():
+    title = sorted(questions_with_timestamp,key = lambda i: (i["title"]).lower())
+    title_reverse = sorted(questions_with_timestamp,key = lambda i: (i["title"]).lower(), reverse=True)
+    submission_time = sorted(questions_with_timestamp,key = lambda i: i["submission_time"])
+    submission_time_reverse = sorted(questions_with_timestamp,key = lambda i:i["submission_time"], reverse=True)
+    message = sorted(questions_with_timestamp,key = lambda i: (i["message"]).lower())
+    message_reverse = sorted(questions_with_timestamp,key = lambda i: (i["message"]).lower(), reverse=True)
+    view_number = sorted(questions_with_timestamp,key = lambda i: int(i["view_number"]))
+    view_number_reverse = sorted(questions_with_timestamp,key = lambda i: int(i["view_number"]), reverse=True)
+    vote_number = sorted(questions_with_timestamp,key = lambda i: int(i["vote_number"]))
+    vote_number_reverse = sorted(questions_with_timestamp,key = lambda i: int(i["vote_number"]), reverse=True)
+    return render_template("sorted.html", TABLE_HEADERS=TABLE_HEADERS, submission_time=submission_time, submission_time_reverse=submission_time_reverse, title=title, title_reverse=title_reverse, message=message,message_reverse=message_reverse, view_number=view_number, view_number_reverse=view_number_reverse,  vote_number=vote_number, vote_number_reverse=vote_number_reverse)
 
 
 if __name__ == "__main__":

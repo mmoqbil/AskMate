@@ -5,11 +5,11 @@
     <h2>Add a question</h2>
     <a href="/list">Go back</a><br><br>
     <form action="/add-question" method="POST" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="Question title" required><br>
+        <textarea type="text" name="title" placeholder="Question title" required></textarea><br>
         <textarea name="question" cols="40" rows="5" placeholder="Type here" required></textarea><br>
         <input id='upload_button' lang='en' type="file" name="image" accept=".jpeg,.jpg,.png,.gif" id="image" value="upload an image"><br>
         <label for="image">↑ Upload an image ↑</label><br><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" placeholder="send">
     </form>
     {% endblock %}
 </main>
