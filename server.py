@@ -109,7 +109,23 @@ def new_answer(question_id):
         return display_question(question_id)
 
     return render_template("new_answer.html", question_title=question_title, question_message=question_message,title_message=title_message, question_id=question_id)
+@app.route('/question/<question_id>/edit', methods=["GET", "POST"])
+def edit_question(question_id):
+    if request.method == 'POST':
+        edited_question = {
+            "id": question_id,
+            "submission_time": util.get_current_time(),
+            "view_number": 0,
+            "vote_number": 0,
+            "title": request.form.get("title"),
+            "message": request.form.get("message"),
+        }
+        questions = connection.update_question(edited_question, question_id)
 
+        return redirect(url_for("display_question", question_id=question_id))
+    else:
+        data = connection.reader_csv(question_path)
+        return render_template("edit_question.html", question_id=question_id, questions=data)
 
 
 if __name__ == "__main__":
