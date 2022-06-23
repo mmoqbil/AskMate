@@ -8,7 +8,8 @@
 
     <form action="/question/{{question_id}}/new_answer" method="post">
         <textarea name="message" cols="40" rows="5" placeholder="Type here" required></textarea><br>
-        <button type="submit" action="/question/{{question_id}}">Submit</button>
+        <button type="submit" method="post">Submit</button>
+
     </form>
     <br>
     <h2>{% if title_message is not none %} {{ title_message }} {% else %} There is no answer. {% endif %}</h2>

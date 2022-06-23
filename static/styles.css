@@ -41,7 +41,8 @@
     }
     
     .navbar ul li a,
-    .sidebar li a {
+    .sidebar li a,
+    button a {
         text-decoration: none;
     }
     

@@ -1,9 +1,10 @@
 {% extends "layout.html" %}
+<title>{% block title %}{% endblock %}</title>
 <main>{% block main %}
     <p class="questions"></p>
     <div class="first-row">
         <h1>All Questions</h1>
-        <button>Add Question</button>
+        <button><a href="http://127.0.0.1:5000/add-question">Add Question</a></button>
     </div>
 
     <br>
@@ -19,7 +20,7 @@
     </div>
 
 
-    <br><br>
+    <br><br> {% for stat in all_stats %}
     <table>
         <tr>
             <td></td>
@@ -39,12 +40,13 @@
         </tr>
         <tr class="table-footer">
             <td></td>
-            <td class="table-footer-image">View Image</td>
+            <td class="table-footer-image">View Image {{stat["image"]}}</td>
             <td></td>
-            <td class="table-footer-question">Question ID: 222</td>
-            <td class="table-footer-timestamp">Asked at: TIMESTAMP</td>
+            <td class="table-footer-question">Question ID: {{stat["id"]}}</td>
+            <td class="table-footer-timestamp">Asked at: {{stat["submission_time"]}}</td>
         </tr>
     </table>
+    {% endfor %}
     </div>
     {% endblock %}
 </main>
