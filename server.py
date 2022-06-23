@@ -7,6 +7,10 @@ app = Flask(__name__)
 question_path = "sample_data/question.csv"
 answer_path = "sample_data/answer.csv"
 question_keys = ['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image']
+TABLE_HEADERS = ["ID", "DATE", "View", "Vote", "Title", "Message", "Image"]
+all_stats = connection.reader_csv(question_path)
+questions_with_timestamp = util.get_date_format(all_stats)
+
 
 
 @app.route("/")
@@ -16,9 +20,6 @@ def hello():
 
 @app.route("/list")
 def question_list():
-    TABLE_HEADERS = ["ID", "DATE", "View", "Vote", "Title", "Message", "Image"]
-    all_stats = connection.reader_csv(question_path)
-    questions_with_timestamp = util.get_date_format(all_stats)
     return render_template("index.html", questions_with_timestamp=questions_with_timestamp, TABLE_HEADERS=TABLE_HEADERS)
 
 
@@ -107,15 +108,12 @@ def edit_question(question_id):
 
 @app.route("/list/sorted")
 def sorted_list():
-    dict_list = connection.reader_csv(question_path)
-    TABLE_HEADERS = ["ID", "DATE", "View", "Vote", "Title", "Message", "Image"]
-    questions_with_timestamp = util.get_date_format(dict_list)
-    title = sorted(questions_with_timestamp,key = lambda i: i["title"])
-    title_reverse = sorted(questions_with_timestamp,key = lambda i: i["view_number"], reverse=True)
+    title = sorted(questions_with_timestamp,key = lambda i: (i["title"]).lower())
+    title_reverse = sorted(questions_with_timestamp,key = lambda i: (i["title"]).lower(), reverse=True)
     submission_time = sorted(questions_with_timestamp,key = lambda i: i["submission_time"])
-    submission_time_reverse = sorted(questions_with_timestamp,key = lambda i: i["submission_time"], reverse=True)
-    message = sorted(questions_with_timestamp,key = lambda i: i["message"])
-    message_reverse = sorted(questions_with_timestamp,key = lambda i: i["message"], reverse=True)
+    submission_time_reverse = sorted(questions_with_timestamp,key = lambda i:i["submission_time"], reverse=True)
+    message = sorted(questions_with_timestamp,key = lambda i: (i["message"]).lower())
+    message_reverse = sorted(questions_with_timestamp,key = lambda i: (i["message"]).lower(), reverse=True)
     view_number = sorted(questions_with_timestamp,key = lambda i: int(i["view_number"]))
     view_number_reverse = sorted(questions_with_timestamp,key = lambda i: int(i["view_number"]), reverse=True)
     vote_number = sorted(questions_with_timestamp,key = lambda i: int(i["vote_number"]))
