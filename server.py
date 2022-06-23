@@ -36,7 +36,8 @@ def hello():
 def question_list():
     TABLE_HEADERS = ["ID", "DATE", "View", "Vote", "Title", "Message", "Image"]
     all_stats = connection.reader_csv(question_path)
-    return render_template("index.html", all_stats=all_stats, TABLE_HEADERS=TABLE_HEADERS)
+    questions_with_timestamp = util.get_date_format(all_stats)
+    return render_template("index.html", dupa=questions_with_timestamp, TABLE_HEADERS=TABLE_HEADERS)
 
 
 

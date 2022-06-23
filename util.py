@@ -5,7 +5,11 @@ import time
 def get_current_time():
     timestamp = int(time.mktime(datetime.now().timetuple()))
     return timestamp
-
+def get_date_format(data):
+    for row in data:
+        timestamp = int(row["submission_time"])
+        row["submission_time"] = datetime.utcfromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M")
+    return data
 
 def create_fields(title, question, image_path):
     question_dictionary = {'id': generate_new_id('last_id.txt'),
