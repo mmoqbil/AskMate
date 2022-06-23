@@ -9,5 +9,6 @@
     <br>
     <h2>Answers:</h2>
     <br> {% for line in answers %} {{ line }}<br><br><br> {% endfor %}
+    <br> <button type="submit"{{ url_for("new_answer", question_id=question_id) }}>Add new answer</button>
     </form>
     {% endblock %}
