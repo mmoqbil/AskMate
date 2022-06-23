@@ -2,25 +2,27 @@
 <title>{% block title %}List{% endblock %}</title>
 <main>{% block main %}
 
-<table border="1">
-	<thead>
-		<tr>
-			{% for header in TABLE_HEADERS %}
-			<th>{{header}}</th>
-			{% endfor %}
-		</tr>
-	</thead>
-	<tbody>
-		{% for stat in all_stats %}
-		<tr>
-			<td>{{stat["id"]}}</td>
-			<td>{{stat["submission_time"]}}</td>
-			<td>{{stat["view_number"]}}</td>
-			<td>{{stat["vote_number"]}}</td>
-			<td>{{stat["title"]}}</td>
-			<td>{{stat["message"]}}</td>
-			<td>{{stat["image"]}}</td>
-		</tr>
-		{% endfor %}
-	</tbody>
-</table>
+    <table border="1">
+        <thead>
+            <tr>
+                {% for header in TABLE_HEADERS %}
+                <th>{{header}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for stat in all_stats %}
+            <tr>
+                <td>{{stat["id"]}}</td>
+                <td>{{stat["submission_time"]}}</td>
+                <td>{{stat["view_number"]}}</td>
+                <td>{{stat["vote_number"]}}</td>
+                <td>{{stat["title"]}}</td>
+                <td>{{stat["message"]}}</td>
+                <td>{{stat["image"]}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+</main>

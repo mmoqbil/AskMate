@@ -3,7 +3,7 @@
 <main>{% block main %}
 
     <h2>Add a question</h2>
-    <a href="/">Go back</a><br><br>
+    <a href="/list">Go back</a><br><br>
     <form action="/add-question" method="POST" enctype="multipart/form-data">
         <input type="text" name="title" placeholder="Question title" required><br>
         <textarea name="question" cols="40" rows="5" placeholder="Type here" required></textarea><br>

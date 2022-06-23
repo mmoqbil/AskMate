@@ -5,40 +5,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <title>{% block title %}Layout{% endblock %}</title>
 </head>
 
 <body>
-    <nav class="navbar">
-        <ul>
-            <li>
-                <a href="http://127.0.0.1:5000/"><img src="{{ url_for('static', filename='logo.png') }}" width="100px"></a>
-                </a>
-            </li>
-            <li>
-                <a href="#about">About</a>
-            </li>
-            <li>
-                <a href="#products">Products</a>
-            </li>
-            <li>
-                <a href="contact">Contact</a>
-            </li>
-            <li>
-                <div class="search">
-                    <span class="fa fa-search"></span>
-                    <input type="text" placeholder="Search...">
-                </div>
-            </li>
-        </ul>
-    </nav>
-
     <div class="container">
-        <div class="sidebar item">
+        <div id="header">
+            <nav class="navbar">
+                <ul>
+                    <li>
+                        <a id="logo" href="http://127.0.0.1:5000/"><img src="{{ url_for('static', filename='logo.png') }}" width="150px"></a>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#blog">Blog</a>
+                    </li>
+                    <li>
+                        <a href="#products">Products</a>
+                    </li>
+                    <li>
+                        <a href="contact">Contact</a>
+                    </li>
+                    <li>
+                        <div class="search">
+                            <span class="fa fa-search"></span>
+                            <input type="text" placeholder="Search...">
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div id="sidebar">
             <ul>
-                <li><a href="#" class="active">Questions</a></li>
+                <li><a href="/list">Questions</a></li>
                 <li>
                     <a href="#">Tags</a>
                 </li>
@@ -54,14 +60,34 @@
                 <li>
                     <a href="#">Teams</a>
                 </li>
-
             </ul>
+            <div class="advert">
+                <a href="https://discord.com/channels/398097970882543627/957967148708425748">
+                    <img src="{{ url_for('static', filename='discord.jpg') }}" width="50%">
+                    <p class="animate__pulse">Join us on discord</p>
+                </a>
+            </div>
         </div>
-        <main class="all-questions item">{% block main %}{% endblock %}</main>
+        <main id="main">{% block main %}{% endblock %}</main>
+        <div id="aside">
+            <div class="blog-post">
+                <h3>Ask Mate Blog</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="blog-post">
+                <h3>Ask Mate Blog</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="blog-post">
+                <h3>Ask Mate Blog</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+
+        </div>
+        <footer id="footer">
+            <p>&copy; Copyright 2022 by Piotr, Mateusz, Mat &amp; Rita</p>
+        </footer>
     </div>
-    <footer>
-        <p>&copy; Copyright 2022 by Piotr, Mateusz, Mat &amp; Rita</p>
-    </footer>
 </body>
 
 </html>

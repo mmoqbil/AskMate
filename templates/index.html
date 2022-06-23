@@ -20,11 +20,13 @@
     </div>
 
 
-    <br><br> {% for stat in dupa %}
+    <br><br> {% for stat in questions_with_timestamp %}
     <table>
         <tr>
             <td></td>
-            <th class="question" colspan='2'><td><a href="{{ url_for('display_question', question_id=stat.id) }}">{{ stat.title }}</a></td></th>
+            <th class="question" colspan='2'>
+                <td><a href="{{ url_for('display_question', question_id=stat.id) }}">{{ stat.title }}</a></td>
+            </th>
 
         </tr>
         <tr>

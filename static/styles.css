@@ -1,86 +1,97 @@
+    /* ************************** General styles ************************** */
+    
     @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+    @import url('https://fonts.googleapis.com/css2?family=Fascinate&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,400;0,700;1,200&family=Open+Sans:wght@300;500&display=swap');
      :root {
         --blue: #17C9E5;
         --dark-blue: #0d75c4;
+        --discord: #566fc2;
         --violet: #7843E7;
+        --light-violet: hsl(270, 25%, 73.3%);
         --pink: #E914E3;
-        --white: #f8f9f9;
+        --white: #ececec;
         --gray: #f8f9f964;
         --dark-gray: #9a999951;
         --black: #333;
     }
     
-    * {
-        margin: 0 auto;
+    *,
+    html,
+    body {
         font-family: 'Nunito Sans', sans-serif;
         color: var(--black)
     }
-    
-    body {
-        background: var(--white);
-    }
-    
-    .navbar {
-        padding: 10px 0 5px 0;
-        font-weight: 100;
-        background-color: var(--gray);
-        border: 1px solid var(--dark-gray);
-    }
-    
-    .navbar ul {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-    
-    .navbar ul li,
-    .sidebar li {
-        list-style-type: none;
-        padding: 5px 20px;
-    }
-    
-    .navbar ul li a,
-    .sidebar li a,
-    button a {
-        text-decoration: none;
-    }
+    /****************************************** MAIN LAYOUT ********************************************/
     
     .container {
+        display: grid;
+        height: 100%;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 10vh 85vh 5vh;
+        grid-template-areas: "h h h h h h h h h h h h" "s s s m m m m m a a a a" "f f f f f f f f f f f f";
+    }
+    
+    .container>div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        color: var(--black)
+    }
+    /* ************************** Navigation ************************** */
+    
+    #header {
+        grid-area: h;
+        width: 100vw;
+    }
+    /* #header nav:after {
+        content: "";
+        display: block;
+        margin: 0 auto;
+        margin-top -30px;
+        width: 85%;
+        border-bottom: 1px solid var(--dark-gray)
+    } */
+    
+    #header nav ul {
         display: flex;
         flex-direction: row;
         justify-content: center;
     }
     
-    .item {
-        margin: 0;
-        padding: 20px;
-        height: 100vh;
+    nav ul li {
+        list-style-type: none;
+        padding: 5px 20px;
+        background-color: none;
     }
     
-    input {
-        border-radius: 5px;
-        border: 1px solid var(--dark-gray);
-        width: 25vw;
-        height: 25px;
-        margin-right: 20px;
-        color: var(--gray);
-        font-family: 'Open Sans', sans-serif;
+    nav ul li:first-child {
+        align-self: flex-start;
+    }
+    
+    nav ul li:first-child:hover,
+    nav ul li:first-child:active,
+    nav ul li:last-child:hover,
+    nav ul li:last-child:active {
+        background-color: white;
+        border-bottom: white;
+    }
+    
+    nav ul li:hover,
+    nav ul li:active {
+        background-color: var(--dark-gray);
+        border-bottom: 2px solid var(--pink);
+    }
+    
+    nav ul li a {
+        text-decoration: none;
+        font-size: 1.3rem;
         font-weight: 100;
     }
     
-    .all-questions {
-        width: 40vw;
-        border-right: 1px solid var(--dark-gray);
-    }
-    
-    .all-questions h1 {
-        font-size: 1.3rem;
-    }
-    
-    .sidebar {
-        width: 10vw;
-        border-right: 1px solid var(--dark-gray);
+    #logo {
+        margin-right: 280px;
     }
     
     .search {
@@ -93,11 +104,151 @@
     
     .search .fa-search {
         position: absolute;
-        top: 7px;
-        left: 7px;
+        top: 15px;
+        left: 55px;
         font-size: 15px;
-        color: var(--dark-gray)
+        color: var(--dark-gray);
     }
+    
+    input {
+        border-radius: 5px;
+        border: 1px solid var(--dark-gray);
+        width: 25vw;
+        height: 25px;
+        margin-left: 50px;
+        color: var(--black);
+        font-weight: 100;
+    }
+    /* ************************** Main ************************** */
+    
+    #main {
+        grid-area: m;
+    }
+    /* ************************** Sidebar Menu + Adverts ************************** */
+    
+    #sidebar {
+        grid-area: s;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid var(--dark-gray);
+    }
+    
+    #sidebar ul {
+        align-self: flex-end;
+        height: 46vh;
+        width: 12.5vw;
+        text-align: center;
+        margin-top: 2vh;
+    }
+    
+    #sidebar ul li {
+        font-size: 1.2rem;
+        font-weight: 100;
+        line-height: 2;
+        padding: 2px;
+        background-color: none;
+        list-style: none;
+    }
+    
+    #sidebar ul li:hover,
+    #sidebar ul li:active {
+        background-color: var(--dark-gray);
+        border-right: 2px solid var(--pink);
+    }
+    
+    #sidebar ul li a {
+        text-decoration: none;
+        background-color: none;
+    }
+    
+    .advert {
+        padding-top: 50px;
+        align-self: flex-end;
+        height: 48vh;
+        width: 12.5vw;
+        background-color: var(--discord);
+        background: linear-gradient(180deg, rgba(86, 111, 194, 1) 0%, rgba(117, 138, 228, 1) 43%, rgba(169, 181, 234, 1) 67%, #edeeeeec 100%);
+        text-align: center;
+    }
+    
+    .advert p {
+        text-transform: uppercase;
+        font-family: 'Fascinate', cursive;
+        color: var(--white);
+        padding: 5px;
+    }
+    
+    .advert a {
+        text-decoration: none;
+    }
+    
+    .animate__pulse {
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+    }
+    /* ************************** Aside - Blog Posts ************************** */
+    
+    #aside {
+        grid-area: a;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .blog-post {
+        box-sizing: border-box;
+        border: 1px solid var(--dark-gray);
+        height: 30vh;
+        width: 45vh;
+        padding: 1vh;
+        margin: 1vh;
+        box-shadow: 7px 7px 9px -5px var(--black);
+        -webkit-box-shadow: 7px 7px 9px -5px var(--black);
+        -moz-box-shadow: 7px 7px 9px -5px var(--black);
+    }
+    
+    .blog-post h3 {
+        font-size: 1.2vw;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    
+    .blog-post h3:after {
+        content: "";
+        display: block;
+        margin: 0 auto;
+        width: 80%;
+        padding-top: 10px;
+        border-bottom: 1px solid var(--pink);
+    }
+    
+    .blog-post p {
+        font-size: 0.95vw;
+        padding: 5px;
+        text-align: justify;
+    }
+    /* ************************** Footer ************************** */
+    
+    #footer {
+        grid-area: f;
+        display: flex;
+        justify-content: center;
+    }
+    
+    #footer p:before {
+        content: "";
+        display: block;
+        margin: 0 auto;
+        width: 80%;
+        padding-top: 20px;
+        border-top: 1px solid var(--violet);
+    }
+    
+    #footer p {
+        align-self: center;
+        padding-bottom: 20px;
+    }
+    /******************************************ALL QUESTIONS ******************************************/
     
     table {
         border-collapse: collapse;
@@ -162,7 +313,12 @@
     .first-row h1,
     .second-row p {
         align-self: left;
-        margin: 0;
+        margin-left: 20px;
+    }
+    
+    .first-row h1,
+    button {
+        margin-top: 20px;
     }
     
     button {
@@ -174,24 +330,5 @@
         align-self: right;
         margin-right: 25px;
     }
-    
-    .active {
-        color: var(--violet);
-        font-weight: bold;
-    }
-    
-    .sidebar li {
-        line-height: 30px;
-    }
-    
-    footer {
-        display: flex;
-        flex-direction: row;
-        width: 100vw;
-        margin-bottom: 30px;
-        padding: 10px;
-    }
-    
-    footer p {
-        align-self: center;
-    }
+    /******************************************ASK QUESTION ******************************************/
+    /****************************************** ADD ANSWER ********************************************/
