@@ -1,16 +1,18 @@
 {% extends "layout.html" %}
 <title>{% block title %}Display question{% endblock %}</title>
 <main>{% block main %}
-    <h2>Question: {{ question_title }}</h2>
+
+
+    <h2>Question: {{ questions[question_id-1]["title"] }}</h2>
     <br>
     <br>
-    <h3>{{ question_message }}</h3>
+    <h3>{{ questions[question_id-1]["message"] }}</h3>
     <br>
     <br>
+
     <a href="{{ url_for("edit_question", question_id=question_id) }}">EDIT question</a><br><br>
+    <p><a href="{{ url_for("delete_question", question_id=question_id) }}">Delete this question</a></p>
     <h2>Answers:</h2>
-    <br> {% for line in answers %} {{ line }}<br><br><br> {% endfor %}
-   <form action="{{ url_for("new_answer", question_id=question_id) }}" method="post">
-    <button type="submit">Submit answer</button>
-    </form>
+    <br> {% for line in answers %}{{ line.message }}<br><br><br> {% endfor %}
+    <a href="{{ url_for("new_answer", question_id=question_id) }}">Write an answer</a>
     {% endblock %}

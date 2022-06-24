@@ -4,22 +4,26 @@ import  os, connection, util
 UPLOAD_FOLDER = '/static/images'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 question_path = "sample_data/question.csv"
 answer_path = "sample_data/answer.csv"
 question_keys = ['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image']
 TABLE_HEADERS = ["ID", "DATE", "View", "Vote", "Title", "Message", "Image"]
-all_stats = connection.reader_csv(question_path)
-questions_with_timestamp = util.get_date_format(all_stats)
+
 
 
 
 @app.route("/")
 def hello():
-    return render_template("index.html")
+    all_stats = connection.reader_csv(question_path)
+    questions_with_timestamp = util.get_date_format(all_stats)
+    return render_template("index.html", questions_with_timestamp=questions_with_timestamp, TABLE_HEADERS=TABLE_HEADERS)
 
 
-@app.route("/list")
+@app.route("/list", methods=["GET", "POST"])
 def question_list():
+    all_stats = connection.reader_csv(question_path)
+    questions_with_timestamp = util.get_date_format(all_stats)
     return render_template("index.html", questions_with_timestamp=questions_with_timestamp, TABLE_HEADERS=TABLE_HEADERS)
 
 
@@ -35,23 +39,23 @@ def add_question():
             image_path = 'static/images/%s' % filename
 
         connection.writer_csv(question_path, question_keys, util.create_fields(title, question, image_path))
+        return redirect("/list")
     return render_template('add-question.html')
 
 
 @app.route("/question/<int:question_id>", methods=["GET", "POST"])
 def display_question(question_id):
     questions = connection.reader_csv(question_path)
-    question_title = questions[question_id-1]["title"]
-    question_message = questions[question_id-1]["message"]
+    # question_title = questions[question_id-1]["title"]
+    # question_message = questions[question_id-1]["message"]
     answers = connection.reader_csv(answer_path)
-    question_answers = []
 
-    for answer in answers:
-        if answer["question_id"] == str(question_id):
-            question_answers.append(answer["message"])
+    # for answer in answers:
+    #     if answer["question_id"] == str(question_id):
+    #         question_answers.append(answer["message"])
     if request.method =="POST":
-         return redirect(url_for("new_answer", question_id=question_id))
-    return render_template("display_question.html", question_title = question_title, question_message = question_message, answers=question_answers, question_id=question_id)
+        return redirect(url_for("new_answer", question_id=question_id))
+    return render_template("display_question.html", question_id=question_id, questions=questions,answers=answers)
     
     
 @app.route("/question/<question_id>/delete", methods=["POST", "GET"])
@@ -75,15 +79,12 @@ def new_answer(question_id):
     title_message = request.form.get("message")
     if request.method == "POST":
         answer_id = util.generate_new_id("last_answer_id.txt")
-    else:
-        answer_id = 0
-    new_answer_dict = {"id": answer_id, "submission_time": 0, "vote_number": 0, "question_id": question_id,
-                       "message": title_message, "image": ""}
-    if request.method == "POST":
-        connection.write_data(new_answer_dict, answer_path)
-    if request.method == "POST":
-        return display_question(question_id)
 
+        new_answer_dict = {"id": answer_id, "submission_time": 0, "vote_number": 0, "question_id": question_id,
+                       "message": title_message, "image": ""}
+
+        connection.write_data(new_answer_dict, answer_path)
+        return redirect(url_for("display_question",question_id=question_id))
     return render_template("new_answer.html", question_title=question_title, question_message=question_message,title_message=title_message, question_id=question_id)
 
 
